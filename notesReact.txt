@@ -1,1 +1,2 @@
 root element ties React with DOM.
+self closing script tag will give problems.
