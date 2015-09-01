@@ -1,2 +1,6 @@
 root element ties React with DOM.
 self closing script tag will give problems.
+server rendering
+descriptive warnings
+custom events system
+declarative predictable confidence reliable
