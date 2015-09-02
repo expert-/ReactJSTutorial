@@ -11,29 +11,34 @@
     <div id="example"></div>
     <script type="text/jsx">
       // Your code here
-	  var MyComponent = React.createClass({
-		  handleClick: function() {
-			// Explicitly focus the text input using the raw DOM API.
-			React.findDOMNode(this.refs.myTextInput).focus();
-		  },
-		  render: function() {
-			// The ref attribute adds a reference to the component to
-			// this.refs when the component is mounted.
-			return (
-			  <div>
-				<input type="text" ref="myTextInput" />
-				<input
-				  type="button"
-				  value="Focus the text input"
-				  onClick={this.handleClick}
-				/>
-			  </div>
-			);
-		  }
-		});
+	  var App = React.createClass({
+			getInitialState: function() {
+			  return {userInput: ''};
+			},
+			handleChange: function(e) {
+			  this.setState({userInput: e.target.value});
+			},
+			clearAndFocusInput: function() {
+			  this.setState({userInput: ''}); // Clear the input
+			  // We wish to focus the <input /> now!
+			},
+			render: function() {
+			  return (
+				<div>
+				  <div onClick={this.clearAndFocusInput}>
+					Click to Reset
+				  </div>
+				  <input
+					value={this.state.userInput}
+					onChange={this.handleChange}
+				  />
+				</div>
+			  );
+			}
+		  });
 
 		React.render(
-		  <MyComponent />,
+		  <App />,
 		  document.getElementById('example')
 		);
     </script>
