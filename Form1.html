@@ -11,7 +11,7 @@
     <div id="example"></div>
     <script type="text/jsx">
       // Your code here
-	  var App = React.createClass({
+	   var App = React.createClass({
 			getInitialState: function() {
 			  return {userInput: ''};
 			},
@@ -19,16 +19,20 @@
 			  this.setState({userInput: e.target.value});
 			},
 			clearAndFocusInput: function() {
-			  this.setState({userInput: ''}); // Clear the input
-			  // We wish to focus the <input /> now!
+			  // Clear the input
+			  this.setState({userInput: ''}, function() {
+				// This code executes after the component is re-rendered
+				React.findDOMNode(this.refs.theInput).focus();   // Boom! Focused!
+			  });
 			},
 			render: function() {
 			  return (
 				<div>
 				  <div onClick={this.clearAndFocusInput}>
-					Click to Reset
+					Click to Focus and Reset
 				  </div>
 				  <input
+					ref="theInput"
 					value={this.state.userInput}
 					onChange={this.handleChange}
 				  />
