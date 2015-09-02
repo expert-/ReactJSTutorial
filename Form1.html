@@ -8,26 +8,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
   <body>
-    <div id="content"></div>
+    <div id="example"></div>
     <script type="text/jsx">
       // Your code here
-	  var HelloWorld = React.createClass({
-		  getInitialState: function() {
-			return {value: 'Hello!'};
-		  },
-		  handleChange: function(event) {
-			this.setState({value: event.target.value});
+	  var MyComponent = React.createClass({
+		  handleClick: function() {
+			// Explicitly focus the text input using the raw DOM API.
+			React.findDOMNode(this.refs.myTextInput).focus();
 		  },
 		  render: function() {
-			var value = this.state.value;
-			return <input type="text" value={value} onChange={this.handleChange} />;
+			// The ref attribute adds a reference to the component to
+			// this.refs when the component is mounted.
+			return (
+			  <div>
+				<input type="text" ref="myTextInput" />
+				<input
+				  type="button"
+				  value="Focus the text input"
+				  onClick={this.handleClick}
+				/>
+			  </div>
+			);
 		  }
 		});
+
 		React.render(
-		<HelloWorld />,
-		document.getElementById('content')
+		  <MyComponent />,
+		  document.getElementById('example')
 		);
-		  
     </script>
   </body>
 </html>
