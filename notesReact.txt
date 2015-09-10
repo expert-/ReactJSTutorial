@@ -4,3 +4,5 @@ server rendering
 descriptive warnings
 custom events system
 declarative predictable confidence reliable
+
+state can be changed. props cannot be changed.
